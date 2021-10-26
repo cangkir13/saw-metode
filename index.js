@@ -1,5 +1,5 @@
 const sampel = require('./sample.json');
-
+// pencarian data cost dan benefit
 const CariPembagi = (data) => {
     const { kreteria, alternatif_kriteria} = data
     let pembagi = []
@@ -7,7 +7,7 @@ const CariPembagi = (data) => {
         // filter kepentingan
         let kepentingan = alternatif_kriteria.filter((el) => el.kreteria_id == kreteria[index].id ).map(el => el.value)
         // set value kepentingan
-        if(kreteria[index].id == 'cost') {
+        if(kreteria[index].type == 'cost') {
             pembagi.push({
                 id_kreteria : kreteria[index].id,
                 name : kreteria[index].name,
@@ -25,6 +25,7 @@ const CariPembagi = (data) => {
     return pembagi
 }
 
+// normalisasi data 
 function normalisasi(pembagi, dataAlt) {
     let result = []
     // looping for normalisasi
@@ -43,6 +44,7 @@ function normalisasi(pembagi, dataAlt) {
     return result
 }
 
+// setting to object
 function setWithObj(normalisasi, attibutes) {
     
     let tmp = {}
@@ -61,7 +63,8 @@ function setWithObj(normalisasi, attibutes) {
    
     return tmp
 }
-
+// perhitungan data object di kali dengan bobot masing2 kriteria
+// rumus masing hasil normalisasi di kali dengan bobot dan di jumlahkan sesuai baris alternatif
 let hitugAltVlaue = (data, attibutes, Objectdata) => {
     let result = []
     let objKey = Object.keys(data)
@@ -84,22 +87,5 @@ let SetOBJ = setWithObj(hitungNormalisasi, sampel.kreteria)
 let hasilKualifikasi = hitugAltVlaue(SetOBJ, sampel.kreteria, sampel.alternatif)
 // console.table(hasilKualifikasi);
 let rangking = hasilKualifikasi.sort((a, b) => b.value - a.value)
+// hasil perengkingan 
 console.table(rangking);
-
-// convert to binary
-function convertToBinary(x) {
-    let bin = 0;
-    let rem, i = 1, step = 1;
-    while (x != 0) {
-        rem = x % 2;
-        console.log(
-            `Step ${step++}: ${x}/2, Remainder = ${rem}, Quotient = ${parseInt(x/2)}`
-        );
-        x = parseInt(x / 2);
-        bin = bin + rem * i;
-        i = i * 10;
-    }
-    console.log(`Binary: ${bin}`);
-}
-
-// convertToBinary(21)
