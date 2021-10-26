@@ -1,0 +1,204 @@
+{
+    "alternatif" : [
+        {
+            "id" : 1,
+            "alternatif_name" : "Galaxy"
+        },
+        {
+            "id" : 2,
+            "alternatif_name" : "Iphone"
+        },
+        {
+            "id" : 3,
+            "alternatif_name" : "BB"
+        },
+        {
+            "id" : 4,
+            "alternatif_name" : "Lumia"
+        }
+    ],
+    "kreteria" : [
+        {
+            "id" : 1,
+            "name" : "Harga",
+            "type" : "cost",
+            "agregat" : 0.2
+        },
+        {
+            "id" : 2,
+            "name" : "Kualitas",
+            "type" : "benefit",
+            "agregat" : 0.25
+        },
+        {
+            "id" : 3,
+            "name" : "Fitur",
+            "type" : "benefit",
+            "agregat" : 0.2
+        },
+        {
+            "id" : 4,
+            "name" : "Popular",
+            "type" : "benefit",
+            "agregat" : 0.125
+        },
+        {
+            "id" : 5,
+            "name" : "Purna Jual",
+            "type" : "benefit",
+            "agregat" : 0.125
+        },
+        {
+            "id" : 6,
+            "name" : "Keawetan",
+            "type" : "benefit",
+            "agregat" : 0.1
+        }
+    ],
+    "alternatif_kriteria" : [
+        {
+            "id" : 1,
+            "alternatif_id" : 1,
+            "kreteria_id" : 1,
+            "value" : 3500
+        },
+        {
+            "id" : 2,
+            "alternatif_id" : 1,
+            "kreteria_id" : 2,
+            "value" : 20
+        },
+        {
+            "id" : 3,
+            "alternatif_id" : 1,
+            "kreteria_id" : 3,
+            "value" : 10
+        },
+        {
+            "id" : 4,
+            "alternatif_id" : 1,
+            "kreteria_id" : 4,
+            "value" : 80
+        },
+        {
+            "id" : 5,
+            "alternatif_id" : 1,
+            "kreteria_id" : 5,
+            "value" : 3000
+        },
+        {
+            "id" : 6,
+            "alternatif_id" : 1,
+            "kreteria_id" : 6,
+            "value" : 36
+        },
+        {
+            "id" : 7,
+            "alternatif_id" : 2,
+            "kreteria_id" : 1,
+            "value" : 1500
+        },
+        {
+            "id" : 8,
+            "alternatif_id" : 2,
+            "kreteria_id" : 2,
+            "value" : 90
+        },
+        {
+            "id" : 9,
+            "alternatif_id" : 2,
+            "kreteria_id" : 3,
+            "value" : 10
+        },
+        {
+            "id" : 10,
+            "alternatif_id" : 2,
+            "kreteria_id" : 4,
+            "value" : 100
+        },
+        {
+            "id" : 11,
+            "alternatif_id" : 2,
+            "kreteria_id" : 5,
+            "value" : 5500
+        },
+        {
+            "id" : 12,
+            "alternatif_id" : 2,
+            "kreteria_id" : 6,
+            "value" : 48
+        },
+        {
+            "id" : 13,
+            "alternatif_id" : 3,
+            "kreteria_id" : 1,
+            "value" : 4000
+        },
+        {
+            "id" : 14,
+            "alternatif_id" : 3,
+            "kreteria_id" : 2,
+            "value" : 80
+        },
+        {
+            "id" : 15,
+            "alternatif_id" : 3,
+            "kreteria_id" : 3,
+            "value" : 9
+        },
+        {
+            "id" : 16,
+            "alternatif_id" : 3,
+            "kreteria_id" : 4,
+            "value" : 90
+        },
+        {
+            "id" : 17,
+            "alternatif_id" : 3,
+            "kreteria_id" : 5,
+            "value" : 2000
+        },
+        {
+            "id" : 18,
+            "alternatif_id" : 3,
+            "kreteria_id" : 6,
+            "value" : 48
+        },
+        {
+            "id" : 19,
+            "alternatif_id" : 4,
+            "kreteria_id" : 1,
+            "value" : 4000
+        },
+        {
+            "id" : 20,
+            "alternatif_id" : 4,
+            "kreteria_id" : 2,
+            "value" : 70
+        },
+        {
+            "id" : 21,
+            "alternatif_id" : 4,
+            "kreteria_id" : 3,
+            "value" : 8
+        },
+        {
+            "id" : 22,
+            "alternatif_id" : 4,
+            "kreteria_id" : 4,
+            "value" : 50
+        },
+        {
+            "id" : 23,
+            "alternatif_id" : 4,
+            "kreteria_id" : 5,
+            "value" : 1500
+        },
+        {
+            "id" : 24,
+            "alternatif_id" : 4,
+            "kreteria_id" : 6,
+            "value" : 60
+        }
+    ]
+}
