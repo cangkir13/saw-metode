@@ -15,6 +15,14 @@
         {
             "id" : 4,
             "alternatif_name" : "Lumia"
+        },
+        {
+            "id" : 5,
+            "alternatif_name" : "Pixel"
+        },
+        {
+            "id" : 6,
+            "alternatif_name" : "OnePlus"
         }
     ],
     "kreteria" : [
@@ -199,6 +207,78 @@
             "alternatif_id" : 4,
             "kreteria_id" : 6,
             "value" : 60
+        },
+        {
+            "id" : 25,
+            "alternatif_id" : 5,
+            "kreteria_id" : 1,
+            "value" : 3000
+        },
+        {
+            "id" : 26,
+            "alternatif_id" : 5,
+            "kreteria_id" : 2,
+            "value" : 85
+        },
+        {
+            "id" : 27,
+            "alternatif_id" : 5,
+            "kreteria_id" : 3,
+            "value" : 12
+        },
+        {
+            "id" : 28,
+            "alternatif_id" : 5,
+            "kreteria_id" : 4,
+            "value" : 70
+        },
+        {
+            "id" : 29,
+            "alternatif_id" : 5,
+            "kreteria_id" : 5,
+            "value" : 2500
+        },
+        {
+            "id" : 30,
+            "alternatif_id" : 5,
+            "kreteria_id" : 6,
+            "value" : 40
+        },
+        {
+            "id" : 31,
+            "alternatif_id" : 6,
+            "kreteria_id" : 1,
+            "value" : 2500
+        },
+        {
+            "id" : 32,
+            "alternatif_id" : 6,
+            "kreteria_id" : 2,
+            "value" : 75
+        },
+        {
+            "id" : 33,
+            "alternatif_id" : 6,
+            "kreteria_id" : 3,
+            "value" : 11
+        },
+        {
+            "id" : 34,
+            "alternatif_id" : 6,
+            "kreteria_id" : 4,
+            "value" : 60
+        },
+        {
+            "id" : 35,
+            "alternatif_id" : 6,
+            "kreteria_id" : 5,
+            "value" : 3000
+        },
+        {
+            "id" : 36,
+            "alternatif_id" : 6,
+            "kreteria_id" : 6,
+            "value" : 50
         }
     ]
 }

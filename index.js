@@ -1,91 +1,58 @@
 const sampel = require('./sample.json');
-// pencarian data cost dan benefit
+
+// Pencarian data cost dan benefit
 const CariPembagi = (data) => {
-    const { kreteria, alternatif_kriteria} = data
-    let pembagi = []
-    for (let index = 0; index < kreteria.length; index++) {
-        // filter kepentingan
-        let kepentingan = alternatif_kriteria.filter((el) => el.kreteria_id == kreteria[index].id ).map(el => el.value)
-        // set value kepentingan
-        if(kreteria[index].type == 'cost') {
-            pembagi.push({
-                id_kreteria : kreteria[index].id,
-                name : kreteria[index].name,
-                value : Math.min.apply(Math, kepentingan)
-            })
-        } else {
-            pembagi.push({
-                id_kreteria : kreteria[index].id,
-                name : kreteria[index].name,
-                value : Math.max.apply(Math, kepentingan)
-            })
-        }
+    const { kreteria, alternatif_kriteria } = data;
+    let pembagi = [];
+    for (const kriteria of kreteria) {
+        // Filter kepentingan
+        let kepentingan = alternatif_kriteria.filter(el => el.kreteria_id == kriteria.id).map(el => el.value);
+        // Set value kepentingan
+        pembagi.push({
+            id_kreteria: kriteria.id,
+            name: kriteria.name,
+            value: kriteria.type == 'cost' ? Math.min(...kepentingan) : Math.max(...kepentingan)
+        });
     }
+    return pembagi;
+};
 
-    return pembagi
-}
+// Normalisasi data 
+const normalisasi = (pembagi, dataAlt) => {
+    return dataAlt.map(da => {
+        let pembagiItem = pembagi.find(p => p.id_kreteria == da.kreteria_id);
+        return {
+            ...da,
+            value_normal: pembagiItem.value,
+            value_normalisasi: da.kreteria_id > 1 ? da.value / pembagiItem.value : pembagiItem.value / da.value
+        };
+    });
+};
 
-// normalisasi data 
-function normalisasi(pembagi, dataAlt) {
-    let result = []
-    // looping for normalisasi
-    for (let index = 0; index < dataAlt.length; index++) {
-        let findIdkreteria = pembagi.filter(el => {
-            if (el.id_kreteria == dataAlt[index].kreteria_id) {
-                result.push({
-                    ...dataAlt[index],
-                    value_normal : el.value,
-                    value_normalisasi :  (dataAlt[index].kreteria_id > 1) ? dataAlt[index].value / el.value :  el.value /  dataAlt[index].value
-                })
-            }
-        })
-        
-    }
-    return result
-}
+// Setting to object
+const setWithObj = (normalisasi, attibutes) => {
+    return normalisasi.reduce((acc, norm) => {
+        if (!acc[norm.alternatif_id]) acc[norm.alternatif_id] = [];
+        acc[norm.alternatif_id].push(norm.value_normalisasi);
+        return acc;
+    }, {});
+};
 
-// setting to object
-function setWithObj(normalisasi, attibutes) {
-    
-    let tmp = {}
-    
-    for (let i = 0; i < normalisasi.length; i++) {
-        for (let index = 0; index < attibutes.length; index++) {
-            if(attibutes[index].id == normalisasi[i].kreteria_id) {
-                if(tmp[normalisasi[i].alternatif_id] === undefined) {
-                    tmp[normalisasi[i].alternatif_id] = [normalisasi[i].value_normalisasi ]
-                } else {
-                    tmp[normalisasi[i].alternatif_id] = [...tmp[normalisasi[i].alternatif_id], normalisasi[i].value_normalisasi ]
-                }
-            }
-        }
-    }
-   
-    return tmp
-}
-// perhitungan data object di kali dengan bobot masing2 kriteria
-// rumus masing hasil normalisasi di kali dengan bobot dan di jumlahkan sesuai baris alternatif
-let hitugAltVlaue = (data, attibutes, Objectdata) => {
-    let result = []
-    let objKey = Object.keys(data)
-    for (let index = 0; index < objKey.length; index++) {
-        result.push({
-            id_alternatif : objKey[index],
-            name_alternatif : Objectdata[index].alternatif_name,
-            value: data[objKey[index]].reduce((a, b, inx) => a + ( b * attibutes[inx].agregat), 0)
-        })
-    }
-    return result
-}
+// Perhitungan data object di kali dengan bobot masing-masing kriteria
+const hitugAltVlaue = (data, attibutes, Objectdata) => {
+    return Object.keys(data).map((key, index) => {
+        return {
+            id_alternatif: key,
+            name_alternatif: Objectdata[index].alternatif_name,
+            value: data[key].reduce((a, b, inx) => a + (b * attibutes[inx].agregat), 0)
+        };
+    });
+};
 
-let hitungPembagi = CariPembagi(sampel)
-// console.table(hitungPembagi);
-let hitungNormalisasi = normalisasi(hitungPembagi, sampel.alternatif_kriteria)
-// console.table(hitungNormalisasi);
-let SetOBJ = setWithObj(hitungNormalisasi, sampel.kreteria)
-// console.log(SetOBJ)
-let hasilKualifikasi = hitugAltVlaue(SetOBJ, sampel.kreteria, sampel.alternatif)
-// console.table(hasilKualifikasi);
-let rangking = hasilKualifikasi.sort((a, b) => b.value - a.value)
-// hasil perengkingan 
+let hitungPembagi = CariPembagi(sampel);
+let hitungNormalisasi = normalisasi(hitungPembagi, sampel.alternatif_kriteria);
+let SetOBJ = setWithObj(hitungNormalisasi, sampel.kreteria);
+let hasilKualifikasi = hitugAltVlaue(SetOBJ, sampel.kreteria, sampel.alternatif);
+let rangking = [...hasilKualifikasi].sort((a, b) => b.value - a.value); // Gunakan spread operator untuk membuat array baru
+
 console.table(rangking);
